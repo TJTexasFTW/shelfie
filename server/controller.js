@@ -13,6 +13,12 @@ module.exports = {
             });
         },
 
+        deletePost(id) {
+            axios.delete(`https://practiceapi.devmountain.com/api/posts?id=${ id }`).then( results => {
+              this.setState({ posts: results.data });
+            });
+          }
+
     // delete: (req, res) => {
     //     const deleteID = req.params.id;
     //     users.splice(deleteID, 1);
