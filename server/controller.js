@@ -28,10 +28,6 @@ module.exports = {
     //     res.status(200).send(users);
     // },
 
-    // read: (req, res) => {
-    //     res.status(200).send(get_inventory);
-    // }
-
     read: (req, res, next ) => {
         const dbInstance = req.app.get('db');
         dbInstance.get_inventory()

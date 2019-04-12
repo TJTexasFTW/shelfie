@@ -37,7 +37,8 @@ class App extends Component {
       <div className="App">
 
        <p><Dashboard 
-            inventory={this.state.inventory}/></p>
+            inventory={this.state.inventory}
+            getData={this.getData}/></p>
         <p><Form
             getData={this.getData}/></p>
         <p><Header/></p>
