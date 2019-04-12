@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 // import {Link} from 'react-router-dom';
 
 
@@ -15,6 +15,7 @@ export default class Form extends Component {
     this.handlePrice = this.handlePrice.bind(this);
     this.handleURL = this.handleURL.bind(this);
     this.handlePName = this.handlePName.bind(this);
+    this.addProduct = this.addProduct.bind(this);
   }
 
   handlePrice (val) {
@@ -40,6 +41,29 @@ export default class Form extends Component {
     document.getElementById('p_name').value ='';
     document.getElementById('price').value ='';
   }
+
+  addProduct(n, p, i) {
+
+    axios.post("/api/product", {
+      name: n, price: p, image_url: i
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+    this.clearEntries();
+
+  }
+
+
+  // addProduct(n, p, i) {
+  //   axios.post("/api/product", {name: n, price: p, image_url: i}).then( results => 
+  //     this.getData())};
+
+  // }
   
   render() {
 
@@ -48,9 +72,8 @@ export default class Form extends Component {
         <p>Image URL: <input id="URL" onChange={ (e) => this.handleURL(e.target.value) } /></p> 
         <p>Product Name: <input id="p_name" onChange={ (e) => this.handlePName(e.target.value) } /></p>
         <p>Price: <input id="price" onChange={ (e) => this.handlePrice(e.target.value) } /></p>
-        <p><button id="Clear" onClick={() => this.clearEntries()}>Cancel</button>                <button onClick={() => this.props.addProduct(this.state.image, this.state.p_name, this.state.price)}>Add to Inventory</button></p>
-        {/* <button className = "signupButton" onClick={() => this.props.addUser(this.state.name, this.state.alias, this.state.balance)}>Start Playing</button> */}
-        {/* <input onChange={ (e) => this.handleAddAlias(e.target.value) }/> */}
+        <p><button id="Clear" onClick={() => this.clearEntries()}>Cancel</button>                
+        <button onClick={() => this.addProduct(this.state.p_name, this.state.price, this.state.image)}>Add to Inventory</button></p>
       </div>
     )
   }

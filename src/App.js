@@ -19,18 +19,11 @@ class App extends Component {
 
     this.getData = this.getData.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.getProduct = this.getProduct.bind(this);
+    
 
-  }
-
-  getProduct() {
-    // console.log(this.state.name, this.state.alias)
-    axios.get('/api/product').
-      then (res => {this.setState({product: res.data})});
   }
 
   getData() {
-    // console.log(this.state.name, this.state.alias)
     axios.get('/api/inventory').
       then (res => {this.setState({inventory: res.data})});
   }
@@ -45,7 +38,8 @@ class App extends Component {
 
        <p><Dashboard 
             inventory={this.state.inventory}/></p>
-        <p><Form/></p>
+        <p><Form
+            getData={this.getData}/></p>
         <p><Header/></p>
         <p><Product/></p>
       </div>
