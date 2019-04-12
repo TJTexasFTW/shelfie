@@ -1,10 +1,17 @@
 module.exports = {
-    // create: (req, res) => {
-    //     // console.log("ReqBody: ", req.body)
-    //     const { id, name, alias, balance } = req.body;
-    //     users.push({ id, name, alias, balance });
-    //     res.status(200).send(users);
-    //     },
+     create: (req, res, next) => {
+            const dbInstance = req.app.get('db');
+            const { name, price, image_url } = req.body;
+            console.log("Create product: ", req.body)
+            console.log("Create product name: ", req.body.name)
+    
+            dbInstance.create_product([name, price, image_url])
+            .then(() => res.sendStatus(200))
+            .catch( err => {
+                res.status(500).send({errorMessage: "Someone goofed. Try again later."});
+                console.log(err)
+            });
+        },
 
     // delete: (req, res) => {
     //     const deleteID = req.params.id;

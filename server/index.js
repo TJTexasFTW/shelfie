@@ -13,7 +13,7 @@ app.use(express.json());
 
 
 app.get("/api/inventory", controller.read);
-// app.post("/api/inventory", controller.create);
+app.post("/api/product", controller.create);
 // app.put("/api/inventory/:id", controller.update);
 // app.delete("/api/inventory/:id", controller.delete);
 
