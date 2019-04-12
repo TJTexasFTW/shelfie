@@ -9,8 +9,13 @@ massive(process.env.CONNECTION_STRING).then(dbInstance => {app.set('db', dbInsta
 console.log("Database connected");
 });
 
-
 app.use(express.json());
+
+
+app.get("/api/inventory", controller.read);
+// app.post("/api/inventory", controller.create);
+// app.put("/api/inventory/:id", controller.update);
+// app.delete("/api/inventory/:id", controller.delete);
 
 
 
